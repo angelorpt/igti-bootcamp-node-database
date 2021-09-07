@@ -16,3 +16,19 @@ services:
       - 3000:3000
     networks:
       - rede
+    links:
+      - postgres
+
+  postgres:
+    image: postgres
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - .docker/pg_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=petshop
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    networks:
+      - rede
